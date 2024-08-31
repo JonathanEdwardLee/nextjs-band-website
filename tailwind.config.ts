@@ -13,7 +13,7 @@ const config: Config = {
         sans: ['Special Elite', ...fontFamily.sans],
       },
       colors: {
-        primary: '#000000',
+        primary: '#000000', // Updated this line
         secondary: '#ffffff',
         accent: '#9B723B',
         muted: '#333333',

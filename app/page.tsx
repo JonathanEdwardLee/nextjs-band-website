@@ -7,6 +7,7 @@ import GuestbookForm from "./components/GuestbookForm";
 import Image from "next/image";
 import heroImage from "@/public/images/LC_band_photo.jpg";
 import logoImage from "@/public/images/mushroom.lady.sticker.1000.png";
+import TiltLogo from "./components/TiltLogo";
 
 export const metadata = generateMetadata({
   title: "Leadership Class - Alt Rock Band from Springfield, MO",
@@ -35,21 +36,14 @@ export default function HomePage() {
       <NewsSection />
 
       {/* Logo Section */}
-      <div className="content flex justify-center py-8 bg-primary text-secondary">
-        <Image
-          src={logoImage}
-          alt="Mushroom Lady Leadership Class Logo"
-          width={400}
-          height={200}
-          className="max-w-xs mx-auto"
-        />
+      <div className="content grid place-items-center py-8 bg-primary text-secondary">
+        <TiltLogo />
       </div>
 
       {/* Guestbook Section */}
-      <div className="bg-gray-900 text-white py-8 px-4">
-        <div className="max-w-3xl mx-auto">
-          <GuestbookForm />
-        </div>
+
+      <div className="max-w-3xl mx-auto">
+        <GuestbookForm />
       </div>
     </div>
   );
