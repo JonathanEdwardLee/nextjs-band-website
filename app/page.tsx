@@ -1,21 +1,23 @@
-import React from "react";
-import { generateMetadata } from "./components/Head";
+"use client";
+
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import NewsSection from "./components/NewsSection";
 import GuestbookForm from "./components/GuestbookForm";
+import GuestbookEntries from "./components/GuestbookEntries";
+import Footer from "./components/Footer";
 import Image from "next/image";
 import heroImage from "@/public/images/LC_band_photo.jpg";
-import logoImage from "@/public/images/mushroom.lady.sticker.1000.png";
 import TiltLogo from "./components/TiltLogo";
 
-export const metadata = generateMetadata({
-  title: "Leadership Class - Alt Rock Band from Springfield, MO",
-  description:
-    "Welcome to the official website of Leadership Class, an alt-rock band based in Springfield, MO. Explore our music, shows, and community-driven projects.",
-});
-
 export default function HomePage() {
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  const handleSubmitSuccess = () => {
+    setRefreshTrigger((prev) => prev + 1);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -32,7 +34,6 @@ export default function HomePage() {
       </div>
 
       {/* News Section */}
-
       <NewsSection />
 
       {/* Logo Section */}
@@ -41,10 +42,11 @@ export default function HomePage() {
       </div>
 
       {/* Guestbook Section */}
+      <GuestbookForm onSubmitSuccess={handleSubmitSuccess} />
 
-      <div className="max-w-3xl mx-auto">
-        <GuestbookForm />
-      </div>
+      {/* Guestbook Entries Section */}
+      <GuestbookEntries refreshTrigger={refreshTrigger} />
+      <Footer />
     </div>
   );
 }
