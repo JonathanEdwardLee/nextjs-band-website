@@ -65,7 +65,7 @@ const GuestbookForm: React.FC<Props> = ({ onSubmitSuccess }) => {
         <h2 className="text-center text-3xl mb-8 font-bold">
           Sign Our Guestbook!
         </h2>
-        <div className="bg-[#333] rounded-lg p-8 shadow-md">
+        <div className="bg-muted rounded-lg p-8 shadow-md">
           <form onSubmit={handleSubmit} className="space-y-8">
             {Object.entries(form).map(([key, value]) =>
               key === "message" ? (

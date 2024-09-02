@@ -1,13 +1,21 @@
 "use client";
 
 // app/components/Navigation.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const Navigation: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => setShowMenu(!showMenu);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setShowMenu(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -20,13 +28,13 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <nav className="bg-[#333] w-full flex justify-center lg:flex hidden">
+      <nav className="bg-muted w-full hidden lg:flex justify-center">
         <div className="flex">
           {navItems.map((item, index) => (
             <Link
               key={index}
               href={item.path}
-              className="text-white text-center px-5 py-3.5 hover:text-[#9B723B] transition-colors duration-300"
+              className="text-white text-center px-5 py-3.5 hover:text-[#9B723B] hover:text-lg transition-all duration-300"
             >
               {item.name}
             </Link>
@@ -34,19 +42,31 @@ const Navigation: React.FC = () => {
         </div>
       </nav>
 
-      {/* Hamburger Menu */}
+      {/* Hamburger Menu Button */}
       <div
-        className="lg:hidden fixed bottom-5 right-5 z-50 p-2.5 rounded bg-white bg-opacity-60 cursor-pointer"
+        className="lg:hidden fixed bottom-4 right-4 z-50 p-3 rounded bg-white cursor-pointer"
         onClick={toggleMenu}
       >
-        <span className="block w-7.5 h-0.75 bg-gray-800 mb-1.5"></span>
-        <span className="block w-7.5 h-0.75 bg-gray-800 mb-1.5"></span>
-        <span className="block w-7.5 h-0.75 bg-gray-800"></span>
+        <span
+          className={`block w-6 h-0.5 bg-black mb-1.5 transition-all ${
+            showMenu ? "rotate-45 translate-y-2" : ""
+          }`}
+        ></span>
+        <span
+          className={`block w-6 h-0.5 bg-black mb-1.5 transition-all ${
+            showMenu ? "opacity-0" : ""
+          }`}
+        ></span>
+        <span
+          className={`block w-6 h-0.5 bg-black transition-all ${
+            showMenu ? "-rotate-45 -translate-y-2" : ""
+          }`}
+        ></span>
       </div>
 
       {/* Mobile Menu */}
       {showMenu && (
-        <div className="fixed inset-y-0 right-0 max-w-[250px] bg-black bg-opacity-60 z-50 flex flex-col items-center justify-center">
+        <div className="fixed inset-y-0 right-0 w-52 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center lg:hidden">
           {navItems.map((item, index) => (
             <Link
               key={index}

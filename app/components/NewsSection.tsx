@@ -33,7 +33,7 @@ const NewsSection: React.FC = () => {
         {newsItems.map((item, index) => (
           <div
             key={index}
-            className="bg-[#333] rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:-translate-y-1"
+            className="bg-muted rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:-translate-y-1"
           >
             <h3 className="text-xl font-bold mb-2">{item.title}</h3>
             <p className="text-sm text-gray-400 mb-4">{item.date}</p>
