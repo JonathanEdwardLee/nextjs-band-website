@@ -7,6 +7,7 @@ interface Video {
   id: string;
   title: string;
   thumbnail: string;
+  isLocal: boolean;
 }
 
 interface VideoCarousel3DProps {
@@ -17,6 +18,7 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [hoveredVideo, setHoveredVideo] = useState<Video | null>(null);
+  const [loadingErrors, setLoadingErrors] = useState<string[]>([]);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -24,17 +26,20 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       60,
-      window.innerWidth / window.innerHeight,
+      mountRef.current.clientWidth / mountRef.current.clientHeight,
       0.1,
       1000
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(
+      mountRef.current.clientWidth,
+      mountRef.current.clientHeight
+    );
     mountRef.current.appendChild(renderer.domElement);
 
     camera.position.z = 15;
-    camera.position.y = -2; // Move the camera down
+    camera.position.y = -2;
 
     const group = new THREE.Group();
     scene.add(group);
@@ -50,11 +55,10 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
       new THREE.OctahedronGeometry(1.5),
     ];
 
-    videos.forEach((video, index) => {
+    const textureLoader = new THREE.TextureLoader();
+
+    const createMesh = (texture: THREE.Texture, index: number) => {
       const shape = shapes[index % shapes.length];
-      const texture = new THREE.TextureLoader().load(
-        `/api/thumbnail?videoId=${video.id}`
-      );
       const material = new THREE.MeshBasicMaterial({ map: texture });
       const mesh = new THREE.Mesh(shape, material);
 
@@ -62,16 +66,56 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
       const radius = 8;
       mesh.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
       mesh.userData = {
-        video,
-        rotationSpeed: Math.random() * 0.02 - 0.01, // Random rotation speed
+        video: videos[index],
+        rotationSpeed: Math.random() * 0.02 - 0.01,
         rotationAxis: new THREE.Vector3(
           Math.random() - 0.5,
           Math.random() - 0.5,
           Math.random() - 0.5
-        ).normalize(), // Random rotation axis
+        ).normalize(),
       };
 
       group.add(mesh);
+    };
+
+    videos.forEach((video, index) => {
+      const shape = shapes[index % shapes.length];
+      console.log(`Attempting to load texture for video: ${video.title}`);
+
+      let thumbnailUrl = video.isLocal
+        ? video.thumbnail
+        : `/api/thumbnail?videoId=${video.id}`;
+
+      console.log(`Thumbnail URL: ${thumbnailUrl}`);
+
+      const loadTexture = (url: string) => {
+        return new Promise<THREE.Texture>((resolve, reject) => {
+          textureLoader.load(
+            url,
+            (texture) => {
+              console.log(
+                `Texture loaded successfully for video: ${video.title}`
+              );
+              resolve(texture);
+            },
+            undefined,
+            (error) => {
+              console.error(`Error loading texture for video: ${video.title}`);
+              console.error(error);
+              reject(error);
+            }
+          );
+        });
+      };
+
+      loadTexture(thumbnailUrl)
+        .then((texture) => createMesh(texture, index))
+        .catch((error) => {
+          setLoadingErrors((prev) => [
+            ...prev,
+            `Failed to load texture for ${video.title}: ${error.message}`,
+          ]);
+        });
     });
 
     scene.background = new THREE.Color(0x000000);
@@ -127,9 +171,15 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
     animate();
 
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      if (mountRef.current) {
+        camera.aspect =
+          mountRef.current.clientWidth / mountRef.current.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(
+          mountRef.current.clientWidth,
+          mountRef.current.clientHeight
+        );
+      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -150,6 +200,13 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
   return (
     <div className="relative w-full h-screen">
       <div ref={mountRef} className="w-full h-full" />
+      {loadingErrors.length > 0 && (
+        <div className="absolute top-0 left-0 bg-red-500 text-white p-2">
+          {loadingErrors.map((error, index) => (
+            <p key={index}>{error}</p>
+          ))}
+        </div>
+      )}
       {hoveredVideo && (
         <>
           <div className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 p-2 rounded">

@@ -24,6 +24,7 @@ const Navigation: React.FC = () => {
     { name: "Videos", path: "/videos" },
     { name: "Contact", path: "/contact" },
     { name: "Games", path: "/games" },
+    { name: "Guestbook", path: "/guestbook" }, // Add this line
   ];
 
   return (

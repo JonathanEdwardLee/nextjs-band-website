@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 interface GuestbookEntry {
   _id: string;
@@ -12,25 +13,19 @@ interface GuestbookEntry {
 
 interface Props {
   refreshTrigger: number;
-  initialEntryCount: number;
 }
 
-const GuestbookEntries: React.FC<Props> = ({
-  refreshTrigger,
-  initialEntryCount,
-}) => {
+const RecentGuestbookEntries: React.FC<Props> = ({ refreshTrigger }) => {
   const [entries, setEntries] = useState<GuestbookEntry[]>([]);
-  const [displayCount, setDisplayCount] = useState(initialEntryCount);
-  const [totalEntries, setTotalEntries] = useState(0);
 
   useEffect(() => {
     fetchEntries();
-  }, [refreshTrigger, displayCount]);
+  }, [refreshTrigger]);
 
   const fetchEntries = async () => {
     try {
-      console.log("Fetching guestbook entries...");
-      const response = await fetch(`/api/guestbook?limit=${displayCount}`);
+      console.log("Fetching recent guestbook entries...");
+      const response = await fetch("/api/guestbook?limit=3");
       console.log("Response status:", response.status);
       if (!response.ok) {
         const errorData = await response.json();
@@ -39,11 +34,10 @@ const GuestbookEntries: React.FC<Props> = ({
         );
       }
       const data = await response.json();
-      console.log("Fetched entries:", data);
+      console.log("Fetched recent entries:", data);
       setEntries(data.entries);
-      setTotalEntries(data.total);
     } catch (error) {
-      console.error("Error fetching guestbook entries:", error);
+      console.error("Error fetching recent guestbook entries:", error);
     }
   };
 
@@ -52,15 +46,11 @@ const GuestbookEntries: React.FC<Props> = ({
     return date.toLocaleString();
   };
 
-  const loadMore = () => {
-    setDisplayCount((prevCount) => prevCount + 10);
-  };
-
   return (
     <section className="bg-black text-white py-10">
       <div className="max-w-2xl mx-auto px-4">
         <h2 className="text-center text-3xl mb-8 font-bold">
-          Guestbook Entries
+          Recent Guestbook Entries
         </h2>
         <div className="space-y-4">
           {entries.map((entry) => (
@@ -80,16 +70,14 @@ const GuestbookEntries: React.FC<Props> = ({
             </div>
           ))}
         </div>
-        {totalEntries > displayCount && (
-          <div className="mt-8 text-center">
-            <button onClick={loadMore} className="btn-custom">
-              Load More
-            </button>
-          </div>
-        )}
+        <div className="mt-8 text-center">
+          <Link href="/guestbook" className="btn-custom">
+            View All Entries
+          </Link>
+        </div>
       </div>
     </section>
   );
 };
 
-export default GuestbookEntries;
+export default RecentGuestbookEntries;

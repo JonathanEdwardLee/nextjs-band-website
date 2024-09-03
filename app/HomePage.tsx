@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import NewsSection from "./components/NewsSection";
 import GuestbookForm from "./components/GuestbookForm";
-import GuestbookEntries from "./components/GuestbookEntries";
+import RecentGuestbookEntries from "./components/RecentGuestbookEntries";
 import Footer from "./components/Footer";
 import Image from "next/image";
 import heroImage from "@/public/images/LC_band_photo.jpg";
@@ -44,8 +44,8 @@ export default function HomePage() {
       {/* Guestbook Section */}
       <GuestbookForm onSubmitSuccess={handleSubmitSuccess} />
 
-      {/* Guestbook Entries Section */}
-      <GuestbookEntries refreshTrigger={refreshTrigger} />
+      {/* Recent Guestbook Entries Section */}
+      <RecentGuestbookEntries refreshTrigger={refreshTrigger} />
       <Footer />
     </div>
   );
