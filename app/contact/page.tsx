@@ -76,9 +76,10 @@ const ContactPage: React.FC = () => {
           </span>
         </h2>
         <p className="text-center text-lg mb-8 text-gray-300">
-          Send us an email, book us for a show, or just say hi! We're based in
-          Springfield, Missouri, and can perform within a 240-mile radius.
+          Send us an email, book us for a show, or just say hi! We&apos;re based
+          in Springfield, Missouri, and can perform within a 240-mile radius.
         </p>
+
         <div className="max-w-2xl mx-auto">
           <div className="bg-muted rounded-lg p-8 shadow-md">
             <form onSubmit={handleSubmit} className="space-y-6">

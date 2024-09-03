@@ -134,11 +134,16 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
 
     window.addEventListener("resize", handleResize);
 
+    // Capture the current value of mountRef
+    const currentMount = mountRef.current;
+
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("click", onMouseClick);
       window.removeEventListener("resize", handleResize);
-      mountRef.current?.removeChild(renderer.domElement);
+      if (currentMount && renderer) {
+        currentMount.removeChild(renderer.domElement);
+      }
     };
   }, [videos]);
 
