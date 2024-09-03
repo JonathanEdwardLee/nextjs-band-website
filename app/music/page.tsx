@@ -2,13 +2,17 @@
 
 import Head from "next/head";
 import { useState } from "react";
+import Header from "../components/Header";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import TiltLogo from "../components/TiltLogo";
 
 const MUSIC_SERVICES = [
   {
     name: "Bandcamp",
     embed: (
       <iframe
-        style={{ border: 0, width: "100%", height: "786px" }}
+        style={{ border: 0, width: "350px", height: "786px" }}
         src="https://bandcamp.com/EmbeddedPlayer/album=1556870638/size=large/bgcol=333333/linkcol=e32c14/transparent=true/"
         seamless
         title="Bandcamp"
@@ -65,69 +69,56 @@ const MusicPage = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="container mx-auto px-4">
+    <>
       <Head>
-        <title>Music & Shows - Leadership Class</title>
+        <title>Music - Leadership Class</title>
         <meta
           name="description"
-          content="Discover the latest music and show information for Leadership Class, an alternative rock band from Springfield, MO."
+          content="Experience the dynamic alt-rock sound of Leadership Class, Springfield Missouri's rising stars. Stream our latest tracks on Spotify, Apple Music, and Amazon Music. Discover why we're making waves in the local music scene and beyond!"
         />
-        <meta property="og:title" content="Music & Shows - Leadership Class" />
-        <meta
-          property="og:description"
-          content="Discover the latest music and show information for Leadership Class, an alternative rock band from Springfield, MO."
-        />
-        <meta
-          property="og:image"
-          content="https://leadershipclassmusic.com/assets/mushroom.lady.sticker.1000-DtV3Wjl_.png"
-        />
-        <meta
-          property="og:url"
-          content="https://leadershipclassmusic.com/music"
-        />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <Header />
+      <Navigation />
+      <main className="container mx-auto px-4 py-8">
+        <h2 className="text-center text-3xl font-bold mb-2">
+          Listen to the Music of{" "}
+          <span className="relative group inline-block">
+            <span className="relative z-10 leadership-class-text">
+              Leadership Class
+            </span>
+            <span className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 blur opacity-0 group-hover:opacity-75 transition-opacity duration-300 z-0"></span>
+          </span>
+        </h2>
+        <p className="text-center text-lg mb-8 text-gray-300">
+          Alternative rock from Springfield, Missouri. Hosts of the basement
+          venue, The Fungeon.
+        </p>
 
-      <h2 className="text-center text-2xl font-bold my-8">Music & Shows</h2>
-
-      <section className="mb-12">
-        <h3 className="text-xl font-semibold mb-4">Listen to Our Music</h3>
-        <div className="mb-4">
-          {MUSIC_SERVICES.map((service, index) => (
-            <button
-              key={service.name}
-              onClick={() => setActiveTab(index)}
-              className={`px-4 py-2 mr-2 mb-2 rounded ${
-                activeTab === index ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-            >
-              {service.name}
-            </button>
-          ))}
+        <div className="max-w-xl mx-auto mb-4">
+          <div className="flex flex-wrap justify-center">
+            {MUSIC_SERVICES.map((service, index) => (
+              <button
+                key={service.name}
+                onClick={() => setActiveTab(index)}
+                className={`px-4 py-2 m-2 rounded ${
+                  activeTab === index ? "bg-accent text-white" : "bg-muted"
+                }`}
+              >
+                {service.name}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="embed-container">{MUSIC_SERVICES[activeTab].embed}</div>
-      </section>
-
-      <section className="mb-12">
-        <h3 className="text-xl font-semibold mb-4">Upcoming Shows</h3>
-        <div className="bg-gray-100 p-4 rounded">
-          <p className="text-gray-600 italic">
-            No upcoming shows at the moment. Check back soon!
-          </p>
+        <div className="embed-container bg-muted p-4 rounded max-w-4xl mx-auto flex justify-center items-center">
+          {MUSIC_SERVICES[activeTab].embed}
         </div>
-      </section>
+      </main>
 
-      <section>
-        <h3 className="text-xl font-semibold mb-4">Past Shows</h3>
-        <div className="bg-gray-100 p-4 rounded">
-          <p className="text-gray-600 italic">
-            Show history coming soon. Stay tuned!
-          </p>
-        </div>
-      </section>
-    </div>
+      <TiltLogo />
+
+      <Footer />
+    </>
   );
 };
 

@@ -24,3 +24,41 @@
     @apply w-[90%] max-w-[800px] mx-auto my-5;
   }
 }
+
+@keyframes sparkle {
+  20%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.group:hover .z-10 {
+  animation: sparkle 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    color: #ffffff;
+    text-shadow: 0 0 5px #9B723B, 0 0 10px #9B723B;
+  }
+  50% {
+    color: #9B723B;
+    text-shadow: 0 0 20px #9B723B, 0 0 30px #9B723B;
+  }
+}
+
+.leadership-class-text {
+  animation: pulse 3s infinite;
+  transition: all 0.3s ease;
+}
+
+.group:hover .leadership-class-text {
+  animation: pulse 1.5s infinite;
+}
+
+.group:hover .z-0 {
+  animation: glow 3s infinite;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.75; }
+}
