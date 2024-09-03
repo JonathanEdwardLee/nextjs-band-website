@@ -1,9 +1,12 @@
-import VideosClient from "./VideosClient";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import TiltLogo from "../components/TiltLogo";
 import Footer from "../components/Footer";
 import { Metadata } from "next";
+
+const VideosClient = dynamic(() => import("./VideosClient"), { ssr: false });
 
 export const metadata: Metadata = {
   title: "Leadership Class Music Videos - Springfield's Alt-Rock Band",
@@ -34,7 +37,9 @@ export default function VideosPage() {
             titles, and click to watch!
           </p>
         </div>
-        <VideosClient />
+        <Suspense fallback={<div>Loading...</div>}>
+          <VideosClient />
+        </Suspense>
       </main>
       <TiltLogo />
       <Footer />
