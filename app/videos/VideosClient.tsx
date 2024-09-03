@@ -3,6 +3,7 @@
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 const VideoCarousel3D = dynamic(() => import("../components/VideoCarousel3D"), {
   ssr: false,
@@ -54,15 +55,26 @@ const VIDEOS = [
 
 function VideoContent() {
   const searchParams = useSearchParams();
-  // You can use searchParams here if needed
-
-  // Limit to 6-8 videos for the carousel
   const carouselVideos = VIDEOS.slice(0, 6);
 
   return (
-    <div className="bg-black w-full min-h-screen flex items-center justify-center">
-      <div className="w-full h-[80vh]">
+    <div className="flex flex-col items-center">
+      <div className="w-full h-[100vh] mb-12">
         <VideoCarousel3D videos={carouselVideos} />
+      </div>
+      <div className="text-center py-8 px-4 w-full">
+        <p className="text-lg mb-6 text-gray-300">
+          Want to watch more videos? Be sure to visit and subscribe to our
+          YouTube channel!
+        </p>
+        <Link
+          href="https://www.youtube.com/@LeadershipClassMusic"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-custom inline-block"
+        >
+          Visit Our YouTube Channel
+        </Link>
       </div>
     </div>
   );

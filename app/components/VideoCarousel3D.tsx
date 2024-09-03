@@ -38,7 +38,7 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
     );
     mountRef.current.appendChild(renderer.domElement);
 
-    camera.position.z = 15;
+    camera.position.z = 16;
     camera.position.y = -2;
 
     const group = new THREE.Group();
@@ -209,7 +209,7 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
       )}
       {hoveredVideo && (
         <>
-          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 p-2 rounded">
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 p-2 rounded">
             <p className="text-white text-center">{hoveredVideo.title}</p>
           </div>
           <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 p-2 rounded">

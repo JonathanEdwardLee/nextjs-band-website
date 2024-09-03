@@ -21,7 +21,7 @@ export default function VideosPage() {
     <>
       <Header />
       <Navigation />
-      <main>
+      <main className="bg-black text-white min-h-screen">
         <div className="text-center py-8">
           <h2 className="text-3xl font-bold mb-2">
             Music Videos by{" "}
