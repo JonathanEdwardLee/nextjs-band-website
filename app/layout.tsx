@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -23,9 +24,11 @@ export default function RootLayout({
     <html lang="en" className={specialElite.className}>
       <body className="bg-primary text-secondary">
         {children}
-        <GoogleAnalytics
-          GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""}
-        />
+        <Suspense fallback={null}>
+          <GoogleAnalytics
+            GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""}
+          />
+        </Suspense>
       </body>
     </html>
   );
