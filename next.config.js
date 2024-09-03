@@ -12,6 +12,10 @@ const nextConfig = {
       },
     ];
   },
+  reactStrictMode: true,
+  images: {
+    domains: ['leadershipclass.myshopify.com'],
+  },
 };
 
 module.exports = nextConfig;
