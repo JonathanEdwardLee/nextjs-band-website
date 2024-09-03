@@ -14,7 +14,21 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: ['leadershipclass.myshopify.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'leadershipclass.myshopify.com',
+      },
+      // Remove the YouTube entry if it exists
+    ],
+  },
+  webpack: (config) => {
+    if (config.externals) {
+      config.externals = [...config.externals, { canvas: 'canvas' }];
+    } else {
+      config.externals = [{ canvas: 'canvas' }];
+    }
+    return config;
   },
 };
 
