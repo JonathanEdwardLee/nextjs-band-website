@@ -1,4 +1,7 @@
-import HomePage from "./HomePage";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
+
+const HomePage = dynamic(() => import("./HomePage"), { ssr: false });
 
 export const metadata = {
   title: "Leadership Class - Springfield's Premier Alt-Rock Band",
@@ -7,5 +10,9 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <HomePage />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomePage />
+    </Suspense>
+  );
 }

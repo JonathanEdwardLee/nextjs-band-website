@@ -1,8 +1,11 @@
-import ContactForm from "./ContactForm";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
+
+const ContactForm = dynamic(() => import("./ContactForm"), { ssr: false });
 
 export const metadata = {
   title: "Contact Leadership Class - Book Us for Your Next Event",
@@ -29,7 +32,9 @@ export default function ContactPage() {
           Send us an email, book us for a show, or just say hi! We&apos;re based
           in Springfield, Missouri, and can perform within a 240-mile radius.
         </p>
-        <ContactForm />
+        <Suspense fallback={<div>Loading contact form...</div>}>
+          <ContactForm />
+        </Suspense>
       </main>
       <TiltLogo />
       <Footer />

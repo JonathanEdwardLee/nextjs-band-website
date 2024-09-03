@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
 
 const VideoCarousel3D = dynamic(() => import("../components/VideoCarousel3D"), {
   ssr: false,
@@ -78,7 +79,10 @@ const VIDEOS = [
   },
 ];
 
-const VideosClient = () => {
+function VideoContent() {
+  const searchParams = useSearchParams();
+  // You can use searchParams here if needed
+
   // Limit to 6-8 videos for the carousel
   const carouselVideos = VIDEOS.slice(0, 6);
 
@@ -86,6 +90,14 @@ const VideosClient = () => {
     <div className="bg-black w-full h-screen">
       <VideoCarousel3D videos={carouselVideos} />
     </div>
+  );
+}
+
+const VideosClient = () => {
+  return (
+    <Suspense fallback={<div>Loading videos...</div>}>
+      <VideoContent />
+    </Suspense>
   );
 };
 

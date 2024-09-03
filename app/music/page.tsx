@@ -1,8 +1,11 @@
-import MusicPlayer from "./MusicPlayer";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
+
+const MusicPlayer = dynamic(() => import("./MusicPlayer"), { ssr: false });
 
 export const metadata = {
   title: "Music - Leadership Class",
@@ -29,7 +32,9 @@ export default function MusicPage() {
           Alternative rock from Springfield, Missouri. Hosts of the basement
           venue, The Fungeon.
         </p>
-        <MusicPlayer />
+        <Suspense fallback={<div>Loading music player...</div>}>
+          <MusicPlayer />
+        </Suspense>
       </main>
       <TiltLogo />
       <Footer />
