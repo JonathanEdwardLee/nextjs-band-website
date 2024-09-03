@@ -1,6 +1,11 @@
 "use client";
+import Head from "next/head";
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
+import Header from "../components/Header";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import TiltLogo from "../components/TiltLogo";
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +13,8 @@ const ContactPage: React.FC = () => {
     from_email: "",
     message: "",
   });
+
+  const [status, setStatus] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -18,6 +25,7 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setStatus("Sending...");
     emailjs
       .sendForm(
         "service_kxbflgi",
@@ -28,139 +36,107 @@ const ContactPage: React.FC = () => {
       .then(
         (result) => {
           console.log(result.text);
+          setStatus("Message sent successfully!");
+          setFormData({ from_name: "", from_email: "", message: "" });
         },
         (error) => {
           console.log(error.text);
+          setStatus("Failed to send message. Please try again.");
         }
       );
     e.currentTarget.reset();
   };
 
+  const inputClass =
+    "w-full p-2 border border-gray-600 rounded bg-white text-black placeholder-gray-500 shadow-md";
+
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-center text-2xl font-bold mb-8">
-        Contact Us, Book Us, Say Hi
-      </h2>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label className="block text-white font-semibold mb-2">Name</label>
-          <input
-            type="text"
-            name="from_name"
-            placeholder="Enter your name"
-            onChange={handleChange}
-            value={formData.from_name}
-            className="w-full p-3 border rounded-md"
-          />
-        </div>
-        <div>
-          <label className="block text-white font-semibold mb-2">Email</label>
-          <input
-            type="email"
-            name="from_email"
-            placeholder="Enter your email"
-            onChange={handleChange}
-            value={formData.from_email}
-            className="w-full p-3 border rounded-md"
-          />
-        </div>
-        <div>
-          <label className="block text-white font-semibold mb-2">Message</label>
-          <textarea
-            name="message"
-            rows={3}
-            placeholder="Enter your message"
-            onChange={handleChange}
-            value={formData.message}
-            className="w-full p-3 border rounded-md"
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 transition"
-        >
-          Send
-        </button>
-      </form>
-
-      {/* About Section */}
-      <div className="about-leadership-class mt-10">
-        <h1 className="text-center text-2xl font-bold mb-5">
-          About Leadership Class
-        </h1>
-        <div className="overflow-x-auto whitespace-nowrap space-x-4 px-2 py-4">
-          {/* Page 1 */}
-          <div className="inline-block max-w-xs p-4 bg-gray-900 rounded-lg text-white">
-            <p>
-              Forged in the vibrant cultural heart of Springfield, MO,{" "}
-              <span className="text-orange-600">Leadership Class</span> stands
-              at the forefront of the alternative rock revival. The band's
-              genesis lies in Nixa High's hallowed halls, where{" "}
-              <span className="text-orange-600">Jonathan Lee</span> and{" "}
-              <span className="text-orange-600">Jason Conley</span> first united
-              their musical fates...
-            </p>
-          </div>
-
-          {/* Page 2 */}
-          <div className="inline-block max-w-xs p-4 bg-gray-900 rounded-lg text-white">
-            <p>
-              The quartet's sound is a rich tapestry of original alt-rock,
-              unconstrained by genre, emboldened by creativity, and have been
-              likened to the eclectic essence of Butthole Surfers and Queens of
-              the Stone Age. Yet, Leadership Class forges its own path...
-            </p>
-          </div>
-
-          {/* Page 3 */}
-          <div className="inline-block max-w-xs p-4 bg-gray-900 rounded-lg text-white">
-            <p>
-              2024 heralds a milestone with their appearance at Queen City
-              Shout, their Live Rehearsal at the Fungeon Album, and a suite of
-              singles captivating listeners on Spotify, Apple Music, Amazon, and
-              Bandcamp...
-            </p>
-          </div>
-
-          {/* Page 4 */}
-          <div className="inline-block max-w-xs p-4 bg-gray-900 rounded-lg text-white">
-            <p>
-              The band's rehearsal space, known fondly as the{" "}
-              <a
-                href="https://www.instagram.com/fungeon417/?hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-orange-600 underline"
-              >
-                Fungeon
-              </a>
-              , epitomizes their community spirit—hosting basement shows that
-              celebrate the local music scene's vibrancy...
-            </p>
-          </div>
-
-          {/* Page 5 */}
-          <div className="inline-block max-w-xs p-4 bg-gray-900 rounded-lg text-white">
-            <p>
-              With LeadershipClassMusic.com as the digital nexus for all things
-              Leadership Class, the band's ethos and sound reach fans far and
-              wide. As they embark on recording a full-length album and
-              anticipate touring outside Springfield...
-            </p>
-          </div>
-
-          {/* Page 6 */}
-          <div className="inline-block max-w-xs p-4 bg-gray-900 rounded-lg text-white">
-            <p>
-              Leadership Class beckons you to be part of their story—a journey
-              of rhythmic innovation, community, and the pursuit of artistry.
-              Embrace the movement where music meets leadership, and let the
-              class begin...
-            </p>
+    <>
+      <Head>
+        <title>Contact Leadership Class - Book Us for Your Next Event</title>
+        <meta
+          name="description"
+          content="Get in touch with Leadership Class, Springfield's premier alt-rock band. Book us for your venue, event, or just say hi! We're the hosts of The Fungeon and we'd love to hear from you."
+        />
+        <meta
+          name="keywords"
+          content="Leadership Class, contact, book band, Springfield Missouri, The Fungeon, alt-rock"
+        />
+      </Head>
+      <Header />
+      <Navigation />
+      <main className="container mx-auto px-4 py-8">
+        <h2 className="text-center text-3xl font-bold mb-2">
+          Contact{" "}
+          <span className="relative group inline-block">
+            <span className="relative z-10 leadership-class-text">
+              Leadership Class
+            </span>
+            <span className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 blur opacity-0 group-hover:opacity-75 transition-opacity duration-300 z-0"></span>
+          </span>
+        </h2>
+        <p className="text-center text-lg mb-8 text-gray-300">
+          Send us an email, book us for a show, or just say hi! We're based in
+          Springfield, Missouri, and can perform within a 240-mile radius.
+        </p>
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-muted rounded-lg p-8 shadow-md">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-white font-semibold mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="from_name"
+                  placeholder="Enter your name"
+                  onChange={handleChange}
+                  value={formData.from_name}
+                  required
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label className="block text-white font-semibold mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="from_email"
+                  placeholder="Enter your email"
+                  onChange={handleChange}
+                  value={formData.from_email}
+                  required
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label className="block text-white font-semibold mb-2">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  rows={5}
+                  placeholder="Enter your message"
+                  onChange={handleChange}
+                  value={formData.message}
+                  required
+                  className={`${inputClass} resize-none`}
+                />
+              </div>
+              <div className="flex justify-center">
+                <button type="submit" className="btn-custom w-1/2">
+                  Send Message
+                </button>
+              </div>
+            </form>
+            {status && <p className="mt-4 text-center text-white">{status}</p>}
           </div>
         </div>
-      </div>
-    </div>
+      </main>
+      <TiltLogo />
+      <Footer />
+    </>
   );
 };
 
