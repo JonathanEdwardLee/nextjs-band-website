@@ -1,16 +1,11 @@
 import React from "react";
+import Link from "next/link";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <footer className="pt-6">
-      {" "}
-      {/* Added padding-top here */}
-      <div className="bg-muted text-secondary py-3">
+    <footer className="pt-8">
+      <div className="bg-muted text-secondary py-6">
         <div className="container mx-auto text-center">
           <p className="text-lg mb-3">Follow us on</p>
           <div className="flex justify-center space-x-6 mb-3">
@@ -39,12 +34,9 @@ const Footer = () => {
               </a>
             ))}
           </div>
-          <button
-            onClick={scrollToTop}
-            className="text-accent hover:underline cursor-pointer"
-          >
-            Return to Top
-          </button>
+          <Link href="/" className="text-accent hover:underline cursor-pointer">
+            Return Home
+          </Link>
           <div className="mt-3 text-sm">
             <p>&copy; 2024 Leadership Class. All rights reserved.</p>
             <p>
