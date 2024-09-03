@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const TiltLogo: React.FC = () => {
   return (
-    <div className="flex justify-center items-center h-[50vh]">
+    <div className="flex justify-center items-center h-[50vh] ">
       <Tilt tiltMaxAngleX={25} tiltMaxAngleY={25} scale={1.05}>
         <div className="w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 relative">
           <Image
