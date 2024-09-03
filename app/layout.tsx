@@ -1,3 +1,4 @@
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Special_Elite } from "next/font/google";
@@ -20,7 +21,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={specialElite.className}>
-      <body className="bg-primary text-secondary">{children}</body>
+      <body className="bg-primary text-secondary">
+        {children}
+        <GoogleAnalytics
+          GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""}
+        />
+      </body>
     </html>
   );
 }
