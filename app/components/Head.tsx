@@ -12,7 +12,7 @@ export function generateMetadata({
   title,
   description,
   keywords = "Leadership Class, alt rock, music band, Springfield MO, live shows, original music, alternative rock, band merch",
-  image = "/images/LC_band_photo.jpg",
+  image = "/images/mushroom.lady.sticker.1000.png",
   url = "https://www.leadershipclassmusic.com",
 }: HeadProps): Metadata {
   return {
