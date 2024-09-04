@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,6 +17,13 @@
            shadow-[0_4px_0_0_rgba(0,0,0,0.3)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.3)]
            hover:bg-white hover:text-custom-gold transition-all duration-300
            hover:text-[1.05em]  hover:translate-y-[2px];
+  }
+
+  .btn-retro {
+    @apply bg-green-700 text-green-300 px-4 py-2 m-1 cursor-pointer font-pixelify rounded
+           border-2 border-green-500 hover:bg-green-600 transition-all duration-300
+           shadow-[0_4px_0_0_rgba(0,0,0,0.3)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.3)]
+           hover:translate-y-[2px];
   }
 }
 
@@ -61,4 +69,8 @@
 @keyframes glow {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 0.75; }
+}
+
+.font-pixelify {
+  font-family: 'Pixelify Sans', sans-serif;
 }
