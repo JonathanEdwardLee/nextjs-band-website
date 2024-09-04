@@ -50,10 +50,10 @@ const GamesPage = () => {
               More Games Coming Soon
             </h3>
             <p className="text-lg text-gray-300">
-              We're working on more exciting games that will let you interact
-              with our music in new ways. From rhythm challenges to narrative
-              adventures, get ready to experience Leadership Class like never
-              before!
+              We&apos;re working on more exciting games that will let you
+              interact with our music in new ways. From rhythm challenges to
+              narrative adventures, get ready to experience Leadership Class
+              like never before!
             </p>
           </div>
           <div className="mt-8">

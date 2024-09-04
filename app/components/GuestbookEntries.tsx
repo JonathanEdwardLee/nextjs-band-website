@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 interface GuestbookEntry {
   _id: string;
@@ -23,11 +23,7 @@ const GuestbookEntries: React.FC<Props> = ({
   const [displayCount, setDisplayCount] = useState(initialEntryCount);
   const [totalEntries, setTotalEntries] = useState(0);
 
-  useEffect(() => {
-    fetchEntries();
-  }, [refreshTrigger, displayCount]);
-
-  const fetchEntries = async () => {
+  const fetchEntries = useCallback(async () => {
     try {
       console.log("Fetching guestbook entries...");
       const response = await fetch(`/api/guestbook?limit=${displayCount}`);
@@ -45,7 +41,11 @@ const GuestbookEntries: React.FC<Props> = ({
     } catch (error) {
       console.error("Error fetching guestbook entries:", error);
     }
-  };
+  }, [displayCount]);
+
+  useEffect(() => {
+    fetchEntries();
+  }, [refreshTrigger, fetchEntries]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

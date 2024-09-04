@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
@@ -131,13 +131,16 @@ const SimonSaysPage: React.FC = () => {
   };
 
   // Function to play a tone
-  const playTone = async (frequency: number) => {
-    if (toneLoaded) {
-      const { Tone } = await import("../../components/ToneWrapper");
-      const synth = new Tone.Synth().toDestination();
-      synth.triggerAttackRelease(frequency, "8n");
-    }
-  };
+  const playTone = useCallback(
+    async (frequency: number) => {
+      if (toneLoaded) {
+        const { Tone } = await import("../../components/ToneWrapper");
+        const synth = new Tone.Synth().toDestination();
+        synth.triggerAttackRelease(frequency, "8n");
+      }
+    },
+    [toneLoaded]
+  );
 
   // Update handleToneClick
   const handleToneClick = (index: number) => {
@@ -200,7 +203,7 @@ const SimonSaysPage: React.FC = () => {
 
       playSequence();
     }
-  }, [sequence]);
+  }, [sequence, playTone]);
 
   return (
     <>
