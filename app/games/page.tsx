@@ -6,11 +6,14 @@ import TiltLogo from "../components/TiltLogo";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Leadership Class Games - Interactive Musical Experiences",
+  title: "Games of Leadership Class, Alt Rock Music based in Springfield, MO",
   description:
-    "Explore interactive games featuring Leadership Class, Springfield's premier alt-rock band. Play Simon Says with Solfeggio tones and stay tuned for more exciting musical experiences!",
-  keywords:
-    "Leadership Class, games, interactive experiences, alt-rock, Springfield Missouri, music games, Simon Says, Solfeggio tones",
+    "Play interactive musical games featuring Leadership Class, Springfield's dynamic alt-rock band.",
+  openGraph: {
+    title: "Games of Leadership Class, Alt Rock Music based in Springfield, MO",
+    description:
+      "Play interactive musical games featuring Leadership Class, Springfield's dynamic alt-rock band.",
+  },
 };
 
 const GamesPage = () => {

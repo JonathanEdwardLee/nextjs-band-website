@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import { Metadata } from "next";
 
 const HomePage = dynamic(() => import("./HomePage"), { ssr: false });
 
-export const metadata = {
-  title: "Leadership Class - Springfield's Premier Alt-Rock Band",
+export const metadata: Metadata = {
+  title: "Home of Leadership Class, Alt Rock Music based in Springfield, MO",
   description:
-    "Official website of Leadership Class, Springfield Missouri's rising alt-rock band. Discover our music, upcoming shows, and The Fungeon venue.",
+    "Discover Leadership Class, Springfield's premier alt-rock band. Explore our music, videos, and upcoming shows.",
 };
 
 export default function Home() {

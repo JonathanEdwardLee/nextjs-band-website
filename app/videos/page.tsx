@@ -9,11 +9,15 @@ import { Metadata } from "next";
 const VideosClient = dynamic(() => import("./VideosClient"), { ssr: false });
 
 export const metadata: Metadata = {
-  title: "Leadership Class Music Videos - Springfield's Alt-Rock Band",
+  title: "Videos of Leadership Class, Alt Rock Music based in Springfield, MO",
   description:
-    "Watch official music videos and live performances by Leadership Class, Springfield's premier alt-rock band. Featuring Jacob on percussion, Jason on guitar and vocals, Jon on bass and vocals, and Nate on synth and vocals.",
-  keywords:
-    "Leadership Class, music videos, alt-rock, Springfield Missouri, Jacob, Jason, Jon, Nate, percussion, guitar, bass, synth, vocals",
+    "Watch music videos and live performances by Leadership Class, Springfield's dynamic alt-rock band.",
+  openGraph: {
+    title:
+      "Videos of Leadership Class, Alt Rock Music based in Springfield, MO",
+    description:
+      "Watch music videos and live performances by Leadership Class, Springfield's dynamic alt-rock band.",
+  },
 };
 
 export default function VideosPage() {

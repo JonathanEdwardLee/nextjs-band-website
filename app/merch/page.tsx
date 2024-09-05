@@ -1,9 +1,21 @@
+import { Metadata } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
+
+export const metadata: Metadata = {
+  title: "Merch of Leadership Class, Alt Rock Music based in Springfield, MO",
+  description:
+    "Shop official merchandise from Leadership Class, Springfield's dynamic alt-rock band. T-shirts, stickers, and more!",
+  openGraph: {
+    title: "Merch of Leadership Class, Alt Rock Music based in Springfield, MO",
+    description:
+      "Shop official merchandise from Leadership Class, Springfield's dynamic alt-rock band. T-shirts, stickers, and more!",
+  },
+};
 
 const products = [
   {
@@ -35,17 +47,6 @@ const products = [
 const MerchPage = () => {
   return (
     <>
-      <Head>
-        <title>Leadership Class Merch - Official Band Merchandise</title>
-        <meta
-          name="description"
-          content="Shop official Leadership Class merchandise. T-shirts, stickers, buttons, hats, and more from Springfield's premier alt-rock band. Support local music with our Shopify store."
-        />
-        <meta
-          name="keywords"
-          content="Leadership Class, merchandise, band merch, t-shirts, stickers, buttons, hats, Shopify, Springfield Missouri, alt-rock"
-        />
-      </Head>
       <Header />
       <Navigation />
       <main className="container mx-auto px-4 py-8">

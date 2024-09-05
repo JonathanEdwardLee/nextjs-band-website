@@ -4,13 +4,19 @@ import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
+import { Metadata } from "next";
 
 const MusicPlayer = dynamic(() => import("./MusicPlayer"), { ssr: false });
 
-export const metadata = {
-  title: "Music - Leadership Class",
+export const metadata: Metadata = {
+  title: "Music of Leadership Class, Alt Rock Music based in Springfield, MO",
   description:
-    "Experience the dynamic alt-rock sound of Leadership Class, Springfield Missouri's rising stars. Stream our latest tracks on Spotify, Apple Music, and Amazon Music. Discover why we're making waves in the local music scene and beyond!",
+    "Listen to the latest tracks and albums from Leadership Class, Springfield's dynamic alt-rock band.",
+  openGraph: {
+    title: "Music of Leadership Class, Alt Rock Music based in Springfield, MO",
+    description:
+      "Listen to the latest tracks and albums from Leadership Class, Springfield's dynamic alt-rock band.",
+  },
 };
 
 export default function MusicPage() {

@@ -2,6 +2,20 @@
 
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Guestbook of Leadership Class, Alt Rock Music based in Springfield, MO",
+  description:
+    "Sign our guestbook and leave your thoughts about Leadership Class, Springfield's dynamic alt-rock band.",
+  openGraph: {
+    title:
+      "Guestbook of Leadership Class, Alt Rock Music based in Springfield, MO",
+    description:
+      "Sign our guestbook and leave your thoughts about Leadership Class, Springfield's dynamic alt-rock band.",
+  },
+};
 
 const GuestbookForm = dynamic(() => import("../components/GuestbookForm"), {
   ssr: false,

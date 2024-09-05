@@ -4,14 +4,20 @@ import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Leadership Class, Alt Rock Music based in Springfield, MO",
+  description:
+    "Get in touch with Leadership Class, Springfield's premier alt-rock band. Book us for your venue or event!",
+  openGraph: {
+    title: "Contact Leadership Class, Alt Rock Music based in Springfield, MO",
+    description:
+      "Get in touch with Leadership Class, Springfield's premier alt-rock band. Book us for your venue or event!",
+  },
+};
 
 const ContactForm = dynamic(() => import("./ContactForm"), { ssr: false });
-
-export const metadata = {
-  title: "Contact Leadership Class - Book Us for Your Next Event",
-  description:
-    "Get in touch with Leadership Class, Springfield's premier alt-rock band. Book us for your venue, event, or just say hi! We're the hosts of The Fungeon and we'd love to hear from you.",
-};
 
 export default function ContactPage() {
   return (

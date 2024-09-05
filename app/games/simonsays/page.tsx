@@ -137,11 +137,6 @@ const SimonSaysPage: React.FC = () => {
     setMessage("Repeat the sequence.");
   };
 
-  const handleQuit = () => {
-    resetGame();
-    startGame();
-  };
-
   // Function to play a tone
   const playTone = useCallback(
     async (frequency: number) => {
@@ -222,21 +217,21 @@ const SimonSaysPage: React.FC = () => {
       <Navigation />
       <main className="bg-black text-white min-h-screen">
         <div className="container mx-auto px-4 py-8 flex flex-col items-center">
-          <h1 className="text-center text-4xl font-bold mb-2">
-            Simon Says - Solfeggio Tones by{" "}
+          <h2 className="text-center text-3xl font-bold mb-2">
+            Solfeggio Simon Says by{" "}
             <span className="relative group inline-block">
               <span className="relative z-10 leadership-class-text">
                 Leadership Class
               </span>
               <span className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 blur opacity-0 group-hover:opacity-75 transition-opacity duration-300 z-0"></span>
             </span>
-          </h1>
-          <h2 className="text-center text-2xl mb-8 text-gray-300">
+          </h2>
+          <p className="text-center text-2xl mb-8 text-gray-300">
             Test your memory and explore the healing frequencies of Solfeggio
             tones in this musical challenge! Click on the {coloredLetters} to
             play as an instrument or click Start Game and see if you can repeat
             Simon&apos;s musical pattern.
-          </h2>
+          </p>
 
           <div className="scoreboard mb-8 border-4 border-green-500 bg-green-900 p-4 font-pixelify text-green-300 text-2xl text-center">
             <div className="mb-2">High Scores:</div>

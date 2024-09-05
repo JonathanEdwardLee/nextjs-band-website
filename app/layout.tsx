@@ -12,8 +12,32 @@ const specialElite = Special_Elite({
 });
 
 export const metadata: Metadata = {
-  title: "Leadership Class",
-  description: "Official website of Leadership Class",
+  title: {
+    default:
+      "Home of Leadership Class, Alt Rock Music based in Springfield, MO",
+    template: "%s | Leadership Class",
+  },
+  description:
+    "Leadership Class is an alt-rock band from Springfield, Missouri, known for their dynamic sound and energetic performances.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.leadershipclassmusic.com/",
+    siteName: "Leadership Class",
+    images: [
+      {
+        url: "/images/mushroom.lady.sticker.1000.png",
+        width: 1000,
+        height: 1000,
+        alt: "Leadership Class Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@leadershipclass", // Replace with your actual Twitter handle
+    creator: "@leadershipclass", // Replace with your actual Twitter handle
+  },
 };
 
 export default function RootLayout({
