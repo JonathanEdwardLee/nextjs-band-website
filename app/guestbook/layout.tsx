@@ -1,12 +1,20 @@
+import { Metadata } from "next";
 import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
 
-export const metadata = {
-  title: "Leadership Class Guestbook - Leave Your Mark",
+export const metadata: Metadata = {
+  title:
+    "Guestbook of Leadership Class, Alt Rock Music based in Springfield, MO",
   description:
-    "Sign our guestbook and leave a message for Leadership Class. Share your thoughts, experiences, or just say hi!",
+    "Sign our guestbook and leave your thoughts about Leadership Class, Springfield's dynamic alt-rock band.",
+  openGraph: {
+    title:
+      "Guestbook of Leadership Class, Alt Rock Music based in Springfield, MO",
+    description:
+      "Sign our guestbook and leave your thoughts about Leadership Class, Springfield's dynamic alt-rock band.",
+  },
 };
 
 export default function GuestbookLayout({
