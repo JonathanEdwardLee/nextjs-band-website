@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import GoogleAnalytics from "./components/GoogleAnalytics";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Special_Elite } from "next/font/google";
@@ -30,9 +29,6 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <SpeedInsights />
           <Analytics />
-          <GoogleAnalytics
-            GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""}
-          />
         </Suspense>
       </body>
     </html>

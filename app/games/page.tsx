@@ -31,18 +31,19 @@ const GamesPage = () => {
           </h2>
           <p className="text-lg mb-8 text-gray-300">
             Immerse yourself in the world of Leadership Class through
-            interactive musical experiences.
+            interactive musical gaming experiences.
           </p>
           <div className="bg-muted p-6 rounded-lg shadow-lg mb-8">
             <h3 className="text-2xl font-semibold text-custom-gold mb-4">
-              Available Games
+              Solfeggio Simon Says
             </h3>
             <Link href="/games/simonsays" className="btn-custom">
-              Play Simon Says - Solfeggio Tones
+              Play Now!
             </Link>
             <p className="mt-4 text-lg text-gray-300">
-              Test your memory and explore the healing frequencies of Solfeggio
-              tones in this musical challenge!
+              It&apos;s a playable instrument and the classic memory improving
+              game! Instead of 4 tones, you get the 7 Solfeggio frequencies!
+              Play and see if you get the highest score!
             </p>
           </div>
           <div className="bg-muted p-6 rounded-lg shadow-lg">
@@ -51,16 +52,42 @@ const GamesPage = () => {
             </h3>
             <p className="text-lg text-gray-300">
               We&apos;re working on more exciting games that will let you
-              interact with our music in new ways. From rhythm challenges to
+              interact with music in new ways. From rhythm challenges to
               narrative adventures, get ready to experience Leadership Class
               like never before!
             </p>
           </div>
           <div className="mt-8">
             <p className="text-lg text-gray-300">
-              Stay tuned for updates on our upcoming game releases. Follow us on
-              social media or join our mailing list to be the first to know when
-              new games are available!
+              Stay tuned for updates on our upcoming game releases. Follow us on{" "}
+              <a
+                href="https://www.facebook.com/leadershipclassmusic"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-custom-gold hover:underline"
+              >
+                Facebook
+              </a>
+              ,{" "}
+              <a
+                href="https://www.instagram.com/leadershipclassmusic/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-custom-gold hover:underline"
+              >
+                Instagram
+              </a>
+              , or{" "}
+              <a
+                href="https://www.youtube.com/channel/UCaiKg65I5qu6djN1r6Z0tpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-custom-gold hover:underline"
+              >
+                YouTube
+              </a>{" "}
+              to be the first to know when new games are available and upcoming
+              shows are announced!
             </p>
           </div>
         </div>

@@ -130,6 +130,18 @@ const SimonSaysPage: React.FC = () => {
     setMessage("");
   };
 
+  const startGame = () => {
+    setIsGameActive(true);
+    setSequence([Math.floor(Math.random() * tones.length)]);
+    setUserSequence([]);
+    setMessage("Repeat the sequence.");
+  };
+
+  const handleQuit = () => {
+    resetGame();
+    startGame();
+  };
+
   // Function to play a tone
   const playTone = useCallback(
     async (frequency: number) => {
@@ -176,14 +188,6 @@ const SimonSaysPage: React.FC = () => {
     // Remove score increment from here
   };
 
-  // Start the game
-  const startGame = () => {
-    setIsGameActive(true);
-    setSequence([Math.floor(Math.random() * tones.length)]);
-    setUserSequence([]);
-    setMessage("Repeat the sequence.");
-  };
-
   const handleGameOver = () => {
     setGameOver(true);
   };
@@ -205,6 +209,13 @@ const SimonSaysPage: React.FC = () => {
     }
   }, [sequence, playTone]);
 
+  const colorWord = "colors";
+  const coloredLetters = colorWord.split("").map((letter, index) => (
+    <span key={index} style={{ color: tones[index % tones.length].color }}>
+      {letter}
+    </span>
+  ));
+
   return (
     <>
       <Header />
@@ -222,7 +233,9 @@ const SimonSaysPage: React.FC = () => {
           </h1>
           <h2 className="text-center text-2xl mb-8 text-gray-300">
             Test your memory and explore the healing frequencies of Solfeggio
-            tones in this musical challenge!
+            tones in this musical challenge! Click on the {coloredLetters} to
+            play as an instrument or click Start Game and see if you can repeat
+            Simon&apos;s musical pattern.
           </h2>
 
           <div className="scoreboard mb-8 border-4 border-green-500 bg-green-900 p-4 font-pixelify text-green-300 text-2xl text-center">
@@ -298,12 +311,6 @@ const SimonSaysPage: React.FC = () => {
                     </button>
                     <button onClick={resetGame} className="btn-retro">
                       Try Again
-                    </button>
-                    <button
-                      onClick={() => setGameOver(false)}
-                      className="btn-retro"
-                    >
-                      Quit
                     </button>
                   </div>
                 </div>
