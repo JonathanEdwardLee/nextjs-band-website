@@ -33,11 +33,21 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    site: "@leadershipclass", // Replace with your actual Twitter handle
-    creator: "@leadershipclass", // Replace with your actual Twitter handle
-  },
+  icons: [
+    { rel: "apple-touch-icon", sizes: "180x180", url: "/favicon/180logo.png" },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "512x512",
+      url: "/favicon/512logo.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "30x30",
+      url: "/favicon/30logo.png",
+    },
+  ],
 };
 
 export default function RootLayout({

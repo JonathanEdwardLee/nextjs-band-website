@@ -11,12 +11,13 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['Special Elite', ...fontFamily.sans],
+        pixelify: ['Pixelify Sans', ...fontFamily.sans],
       },
       colors: {
         primary: '#000000',
         secondary: '#ffffff',
         accent: '#9B723B',
-        muted: '#212529', // Updated this line
+        muted: '#212529',
         'custom-gold': '#9B723B',
         'custom-dark': '#222',
       },
@@ -31,9 +32,20 @@ const config: Config = {
         '4xl': '56rem',
         '5xl': '64rem',
       },
+      perspective: {
+        '1000': '1000px',
+      },
+      rotate: {
+        'y-180': '180deg',
+      },
+      backfaceVisibility: {
+        'hidden': 'hidden',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };
 
 export default config;

@@ -1,0 +1,25 @@
+{
+  "name": "Leadership Class",
+  "short_name": "Leadership Class",
+  "icons": [
+
+    {
+      "src": "/favicon/30logo.png",
+      "sizes": "30x30",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/180logo.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/512logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
