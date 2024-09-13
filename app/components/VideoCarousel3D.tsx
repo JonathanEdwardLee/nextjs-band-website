@@ -194,29 +194,31 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
           </div>
         </>
       )}
-      {selectedVideo &&
-        (console.log("Rendering video:", selectedVideo.id), // Log before rendering
-        (
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-            <div className="bg-muted p-4 rounded-lg w-full max-w-[90vh] aspect-video">
-              <div className="relative w-full h-full">
-                <iframe
-                  src={`https://www.youtube.com/embed/${selectedVideo.id}`}
-                  title={selectedVideo.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 w-full h-full rounded-lg"
-                ></iframe>
-              </div>
-              <button
-                onClick={() => setSelectedVideo(null)}
-                className="btn-custom w-full mt-4"
-              >
-                Close
-              </button>
-            </div>
+      {selectedVideo && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-100"
+          onClick={() => setSelectedVideo(null)}
+        >
+          <div
+            className="bg-muted p-4 rounded-lg w-full h-full max-w-[90vh] max-h-[80vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <iframe
+              src={`https://www.youtube.com/embed/${selectedVideo.id}`}
+              title={selectedVideo.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-lg"
+            ></iframe>
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="btn-custom w-full mt-4"
+            >
+              Close
+            </button>
           </div>
-        ))}
+        </div>
+      )}
     </div>
   );
 };
