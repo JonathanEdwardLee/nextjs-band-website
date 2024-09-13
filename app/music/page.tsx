@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
 import { Metadata } from "next";
+import ExploreSection from "../components/ExploreSection";
 
 const MusicPlayer = dynamic(() => import("./MusicPlayer"), { ssr: false });
 
@@ -43,6 +44,7 @@ export default function MusicPage() {
         </Suspense>
       </main>
       <TiltLogo />
+      <ExploreSection />
       <Footer />
     </>
   );

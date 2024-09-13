@@ -74,3 +74,28 @@
 .font-pixelify {
   font-family: 'Pixelify Sans', sans-serif;
 }
+
+/* Modal Styles */
+.modal {
+  @apply bg-muted text-white p-6 rounded-lg shadow-md relative;
+  max-width: 500px;
+  margin: auto;
+}
+
+.overlay {
+  @apply fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex justify-center items-center;
+}
+
+/* Remove the specific link styles for modal */
+.modal a {
+  @apply text-white;
+}
+
+.modal a:hover {
+  @apply text-custom-gold;
+}
+
+/* Override text color for buttons inside modal */
+.modal .btn-custom {
+  @apply !text-black;
+}

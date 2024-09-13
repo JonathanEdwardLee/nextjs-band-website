@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation";
 import TiltLogo from "../components/TiltLogo";
 import Footer from "../components/Footer";
 import { Metadata } from "next";
+import ExploreSection from "../components/ExploreSection";
 
 const VideosClient = dynamic(() => import("./VideosClient"), { ssr: false });
 
@@ -36,7 +37,8 @@ const VideosPage = () => (
           </span>
         </h2>
         <p className="text-lg mb-8 text-gray-300">
-          Explore our 3D video carousel. Click on a shape to see a musicvideo.
+          Explore our music videos! Click on a cube to watch one of our live
+          performances.
         </p>
       </div>
       <Suspense fallback={<div>Loading...</div>}>
@@ -44,6 +46,7 @@ const VideosPage = () => (
       </Suspense>
     </main>
     <TiltLogo />
+    <ExploreSection />
     <Footer />
   </>
 );

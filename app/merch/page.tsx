@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
+import ExploreSection from "../components/ExploreSection";
 
 export const metadata: Metadata = {
   title: "Merch of Leadership Class, Alt Rock Music based in Springfield, MO",
@@ -107,6 +108,7 @@ const MerchPage = () => {
         </div>
       </main>
       <TiltLogo />
+      <ExploreSection />
       <Footer />
     </>
   );

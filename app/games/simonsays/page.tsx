@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import TiltLogo from "../../components/TiltLogo";
+import ExploreSection from "../../components/ExploreSection";
 
 const DynamicTone = dynamic(() => import("../../components/ToneWrapper"), {
   ssr: false,
@@ -346,6 +347,7 @@ const SimonSaysPage: React.FC = () => {
         </div>
       </main>
       <TiltLogo />
+      <ExploreSection />
       <Footer />
     </>
   );

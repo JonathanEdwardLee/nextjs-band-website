@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
+import ExploreSection from "../components/ExploreSection";
 
 export const metadata: Metadata = {
   title: "Shows of Leadership Class, Alt Rock Music based in Springfield, MO",
@@ -26,6 +27,7 @@ export default function ShowsLayout({
       <Navigation />
       <main className="container mx-auto px-4 py-8">{children}</main>
       <TiltLogo />
+      <ExploreSection />
       <Footer />
     </>
   );

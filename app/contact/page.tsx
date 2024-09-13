@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TiltLogo from "../components/TiltLogo";
 import { Metadata } from "next";
+import ExploreSection from "../components/ExploreSection";
 
 export const metadata: Metadata = {
   title: "Contact Leadership Class, Alt Rock Music based in Springfield, MO",
@@ -43,6 +44,7 @@ export default function ContactPage() {
         </Suspense>
       </main>
       <TiltLogo />
+      <ExploreSection />
       <Footer />
     </>
   );

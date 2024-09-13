@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Image from "next/image";
 import heroImage from "@/public/images/LC_band_photo.jpg";
 import TiltLogo from "./components/TiltLogo";
+import ExploreSection from "./components/ExploreSection";
 
 export default function HomePage() {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -46,6 +47,10 @@ export default function HomePage() {
 
       {/* Recent Guestbook Entries Section */}
       <RecentGuestbookEntries refreshTrigger={refreshTrigger} />
+
+      {/* Explore Section */}
+      <ExploreSection />
+
       <Footer />
     </div>
   );
