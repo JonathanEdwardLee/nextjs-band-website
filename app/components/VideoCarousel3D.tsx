@@ -7,7 +7,7 @@ interface Video {
   id: string;
   title: string;
   thumbnail: string;
-  isLocal: boolean;
+  // isLocal: boolean; // {{ edit_1 }} Removed isLocal property
 }
 
 interface VideoCarousel3DProps {
@@ -43,22 +43,13 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
 
     const group = new THREE.Group();
     scene.add(group);
-
     group.rotation.x = Math.PI / 8;
 
-    const shapes = [
-      new THREE.BoxGeometry(3, 3, 3),
-      new THREE.SphereGeometry(1.5, 32, 32),
-      new THREE.ConeGeometry(1.5, 3, 32),
-      new THREE.CylinderGeometry(1.5, 1.5, 3, 32),
-      new THREE.TorusGeometry(1.5, 0.5, 16, 100),
-      new THREE.OctahedronGeometry(1.5),
-    ];
+    const shape = new THREE.BoxGeometry(3, 3, 3); // Use only cubes
 
     const textureLoader = new THREE.TextureLoader();
 
     const createMesh = (texture: THREE.Texture, index: number) => {
-      const shape = shapes[index % shapes.length];
       const material = new THREE.MeshBasicMaterial({ map: texture });
       const mesh = new THREE.Mesh(shape, material);
 
@@ -79,29 +70,18 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
     };
 
     videos.forEach((video, index) => {
-      const shape = shapes[index % shapes.length];
-      console.log(`Attempting to load texture for video: ${video.title}`);
-
-      let thumbnailUrl = video.isLocal
-        ? video.thumbnail
-        : `/api/thumbnail?videoId=${video.id}`;
-
-      console.log(`Thumbnail URL: ${thumbnailUrl}`);
+      const thumbnailUrl = video.thumbnail; // Updated to use only thumbnail
 
       const loadTexture = (url: string) => {
         return new Promise<THREE.Texture>((resolve, reject) => {
           textureLoader.load(
             url,
             (texture) => {
-              console.log(
-                `Texture loaded successfully for video: ${video.title}`
-              );
               resolve(texture);
             },
             undefined,
             (error) => {
               console.error(`Error loading texture for video: ${video.title}`);
-              console.error(error);
               reject(error);
             }
           );
@@ -147,12 +127,13 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
 
       if (intersects.length > 0) {
         const selectedMesh = intersects[0].object;
+        // Removed console logs
         setSelectedVideo(selectedMesh.userData.video);
       }
     };
 
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("click", onMouseClick);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("click", onMouseClick, { passive: true });
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -163,7 +144,6 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
           child.userData.rotationAxis,
           child.userData.rotationSpeed
         );
-        // Removed the lookAt function to allow free rotation
       });
       renderer.render(scene, camera);
     };
@@ -184,15 +164,12 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
 
     window.addEventListener("resize", handleResize);
 
-    // Capture the current value of mountRef
-    const currentMount = mountRef.current;
-
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("click", onMouseClick);
       window.removeEventListener("resize", handleResize);
-      if (currentMount && renderer) {
-        currentMount.removeChild(renderer.domElement);
+      if (mountRef.current && renderer) {
+        mountRef.current.removeChild(renderer.domElement);
       }
     };
   }, [videos]);
@@ -217,27 +194,29 @@ const VideoCarousel3D: React.FC<VideoCarousel3DProps> = ({ videos }) => {
           </div>
         </>
       )}
-      {selectedVideo && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-muted p-4 rounded-lg w-full max-w-[90vh] aspect-video">
-            <div className="relative w-full h-full">
-              <iframe
-                src={`https://www.youtube.com/embed/${selectedVideo.id}`}
-                title={selectedVideo.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full rounded-lg"
-              ></iframe>
+      {selectedVideo &&
+        (console.log("Rendering video:", selectedVideo.id), // Log before rendering
+        (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div className="bg-muted p-4 rounded-lg w-full max-w-[90vh] aspect-video">
+              <div className="relative w-full h-full">
+                <iframe
+                  src={`https://www.youtube.com/embed/${selectedVideo.id}`}
+                  title={selectedVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full rounded-lg"
+                ></iframe>
+              </div>
+              <button
+                onClick={() => setSelectedVideo(null)}
+                className="btn-custom w-full mt-4"
+              >
+                Close
+              </button>
             </div>
-            <button
-              onClick={() => setSelectedVideo(null)}
-              className="btn-custom w-full mt-4"
-            >
-              Close
-            </button>
           </div>
-        </div>
-      )}
+        ))}
     </div>
   );
 };
