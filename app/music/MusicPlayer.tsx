@@ -17,7 +17,7 @@ const MUSIC_SERVICES = [
     name: "YouTube Music",
     embed: (
       <iframe
-        src="https://music.youtube.com/playlist?list=OLAK5uy_nNnexy2_YDHkLzC0cwLH6T_tdBd6aSovo"
+        src="https://www.youtube.com/playlist?list=OLAK5uy_kh-5kVB6BmbkS8lHhZclGeBLciYU98Sjk"
         width="100%"
         height="352"
         style={{ borderRadius: "12px" }}
