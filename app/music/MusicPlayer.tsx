@@ -17,11 +17,13 @@ const MUSIC_SERVICES = [
     name: "YouTube Music",
     embed: (
       <iframe
-        src="https://www.youtube.com/playlist?list=OLAK5uy_kh-5kVB6BmbkS8lHhZclGeBLciYU98Sjk"
+        src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_nNnexy2_YDHkLzC0cwLH6T_tdBd6aSovo"
         width="100%"
         height="352"
         style={{ borderRadius: "12px" }}
         allow="autoplay; encrypted-media; fullscreen"
+        frameBorder="0"
+        allowFullScreen
         title="YouTube Music"
       />
     ),
