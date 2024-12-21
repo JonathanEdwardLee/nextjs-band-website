@@ -14,6 +14,19 @@ const MUSIC_SERVICES = [
     ),
   },
   {
+    name: "YouTube Music",
+    embed: (
+      <iframe
+        src="https://music.youtube.com/playlist?list=OLAK5uy_nNnexy2_YDHkLzC0cwLH6T_tdBd6aSovo"
+        width="100%"
+        height="352"
+        style={{ borderRadius: "12px" }}
+        allow="autoplay; encrypted-media; fullscreen"
+        title="YouTube Music"
+      />
+    ),
+  },
+  {
     name: "Spotify",
     embed: (
       <iframe
