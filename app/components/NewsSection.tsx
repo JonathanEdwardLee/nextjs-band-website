@@ -4,17 +4,17 @@ import React from "react";
 const newsItems = [
   {
     title: "Upcoming Show at The Fungeon",
-    date: "Sept 6, 2024",
+    date: "Dec 20th, 2024",
     description:
-      "Next show is Oct 26th! It's Halloweeeeeeen! Follow @fungeon417 on Instagram to stay up to date!",
+      "Next show is Dec 21st! It's an album release show! Follow @fungeon417 on Instagram to stay up to date!",
     link: "https://www.instagram.com/fungeon417/?hl=en",
   },
   {
-    title: "Recording Progress",
-    date: "May 29, 2024",
+    title: "Album is out now!",
+    date: "Dec 20th, 2024",
     description:
-      "We are currently working on our album and sharing our progress as we go on Bandcamp. Support, listen, even download demos!",
-    link: "https://www.leadershipclass.bandcamp.com/",
+      "Our album is out on all streaming platforms. Support, listen, and share!",
+    link: "https://open.spotify.com/album/6XEyw0FSvLNwSGBSmLgK6S?si=lYG6iEZbQ7aiLrXiFQ2vTg",
   },
   {
     title: "Exploring The Ozarks!",
