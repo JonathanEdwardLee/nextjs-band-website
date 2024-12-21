@@ -7,7 +7,7 @@ const MUSIC_SERVICES = [
     embed: (
       <iframe
         style={{ border: 0, width: "350px", height: "786px" }}
-        src="https://bandcamp.com/EmbeddedPlayer/album=1556870638/size=large/bgcol=333333/linkcol=e32c14/transparent=true/"
+        src="https://bandcamp.com/EmbeddedPlayer/album=8319622/size=large/bgcol=333333/linkcol=e32c14/transparent=true/"
         seamless
         title="Bandcamp"
       />
@@ -52,7 +52,7 @@ const MUSIC_SERVICES = [
         }}
         height="450"
         sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-        src="https://embed.music.apple.com/us/album/here-we-go-single/1659586681"
+        src="https://embed.music.apple.com/us/album/98-percent-live/1783966395"
         title="Apple Music"
       />
     ),
